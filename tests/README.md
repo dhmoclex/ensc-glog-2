@@ -151,6 +151,8 @@ Beaucoup d’études ont été faites sur le TDD. Il en ressort que les dévelop
 dotnet new mstest -n Todo.UnitTests
 dotnet add ./Todo.UnitTests/Todo.UnitTests.csproj reference ./Todo/Todo.csproj
 dotnet add package FluentAssertions --version 6.12.0
+dotnet add package Moq
+dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.0
 ```
 
 Pour voir les tests dans VSCode : C# Dev Kit

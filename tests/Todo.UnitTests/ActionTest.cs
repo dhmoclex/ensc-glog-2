@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Todo.UnitTests;
 
@@ -140,9 +141,10 @@ public class ActionTest
     }
 
     [TestMethod]
-    public void AssertTest() {
+    public void AssertTest()
+    {
         Assert.AreEqual(1, 1); // égalité entre entier
-        Assert.AreEqual(3.14, 6.28  /2 ); // égalité entre double
+        Assert.AreEqual(3.14, 6.28 / 2); // égalité entre double
         Assert.AreEqual("une chaine", "une " + "chaine"); // égalité entre chaînes
         Assert.AreNotEqual(1, 2); // inégalité
         Assert.IsFalse(1 == 2); // booléen vaut faux
@@ -180,7 +182,4 @@ public class ActionTest
         var dateDeLivraison = DateTime.Now.AddDays(3);
         DateTime.Now.Should().BeAtLeast(TimeSpan.FromDays(2)).Before(dateDeLivraison);
     }
-
-    // Collection
-    // Given When Then
 }
