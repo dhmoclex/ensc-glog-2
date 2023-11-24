@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Todo.UnitTests;
 
@@ -57,8 +56,7 @@ public class ActionTest
         var a = 2;
         var b = 7;
         var result = a + b;
-        if (result != 9)
-            Assert.AreEqual(result, 9);
+        Assert.AreEqual(result, 9);
     }
 
     [TestMethod]
@@ -67,8 +65,7 @@ public class ActionTest
         var a = 2;
         var b = 7;
         var result = a + b + 1;
-        if (result != 9)
-            Assert.AreEqual(result, 9);
+        Assert.AreEqual(result, 9);
     }
 
     [TestMethod]
@@ -79,8 +76,7 @@ public class ActionTest
             var a = 2;
             var b = 7;
             var result = a + b + 1;
-            if (result != 9)
-                Assert.AreEqual(result, 9);
+            Assert.AreEqual(result, 9);
         }
         catch (Exception)
         {
@@ -166,6 +162,7 @@ public class ActionTest
     {
         var valeur = -1;
         valeur.Should().BeNegative();
+        Assert.IsTrue(valeur < 0);
 
         Math.PI.Should().BeApproximately(3.14, 0.1);
         valeur.Should().BeInRange(-5, 5);

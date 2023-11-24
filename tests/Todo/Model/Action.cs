@@ -27,18 +27,18 @@ public class Action
     }
 
     // override object.Equals
-    //public override bool Equals(Object? obj)
-    //{
-    //    if (obj is not Action action)
-    //    {
-    //        return false;
-    //    }
-    //    return (Id == action.Id)
-    //        && (Name == action.Name)
-    //        && (DueDate == action.DueDate)
-    //        && (Context?.Id == action.Context?.Id)
-    //        && (Project?.Id == action.Project?.Id)
-    //        && (IsInbox == action.IsInbox)
-    //        && (IsScheduled == action.IsScheduled);
-    //}
+    public override bool Equals(Object? obj)
+    {
+        if (obj is not Action action)
+        {
+            return false;
+        }
+        return (Id == action.Id)
+            && (Name == action.Name)
+            && (DueDate == action.DueDate)
+            && (Context?.Id == action.Context?.Id)
+            && (Project?.Id == action.Project?.Id)
+            && (IsInbox == action.IsInbox)
+            && (IsScheduled == action.IsScheduled);
+    }
 }
