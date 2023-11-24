@@ -68,4 +68,6 @@ public class MoqTest
         // Then
         Assert.AreEqual(actual, true);
     }
+
+    // https://github.com/devlooped/moq/wiki/Quickstart#verification
 }
