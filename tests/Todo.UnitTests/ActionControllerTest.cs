@@ -1,65 +1,51 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Todo.UnitTests;
 
 [TestClass]
 public class ActionControllerTest
 {
-    [TestMethod]
-    public void InboxTest()
+    static DbContextOptions<DataContext> options = new DbContextOptionsBuilder<DataContext>()
+        .UseInMemoryDatabase(databaseName: "TodoDatabase")
+        .Options;
+
+    readonly Action a = new Action
     {
-        var context = new DataContext();
-        var controller = new ActionController(context);
-        var answer = controller.GetInbox().Result.ToString();
-        Assert.AreEqual(answer, "");
+        Id = 1,
+        Name = "Action 1",
+        IsInbox = true
+    };
+    readonly Action b = new Action
+    {
+        Id = 2,
+        Name = "Action 2",
+        IsInbox = true
+    };
+    readonly Action c = new Action
+    {
+        Id = 3,
+        Name = "Action 3",
+        IsInbox = false
+    };
+
+    [TestInitialize()]
+    public void Setup()
+    {
+        // This method will be called before each MSTest test method
+        using var context = new DataContext(options);
+        context.Actions.AddRange(a, b, c);
+        context.SaveChanges();
     }
 
     [TestMethod]
-    public void InMemoryInboxTest()
+    public void ThisIsOneTest()
     {
-        var options = new DbContextOptionsBuilder<DataContext>()
-            .UseInMemoryDatabase(databaseName: "TodoDatabase")
-            .Options;
-
-        var a = new Action
-        {
-            Id = 1,
-            Name = "Action 1",
-            IsInbox = true
-        };
-        var b = new Action
-        {
-            Id = 2,
-            Name = "Action 2",
-            IsInbox = true
-        };
-        var c = new Action
-        {
-            Id = 3,
-            Name = "Action 3",
-            IsInbox = false
-        };
-
-        // Insert seed data into the database using one instance of the context
-        using (var context = new DataContext(options))
-        {
-            context.Actions.AddRange(a, b, c);
-            context.SaveChanges();
-        }
-
-        // Use a clean instance of the context to run the test
-        using (var context = new DataContext(options))
-        {
-            var controller = new ActionController(context);
-            var result = controller.GetInbox().Result.Value?.ToList();
-            CollectionAssert.AreEqual(result, new List<Action>() { a, b });
-        }
+        using var context = new DataContext(options);
+        var controller = new ActionController(context);
+        var result = controller.GetInbox().Result.Value?.ToList();
+        CollectionAssert.AreEqual(result, new List<Action>() { a, b });
     }
 }

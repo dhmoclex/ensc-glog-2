@@ -148,11 +148,12 @@ Beaucoup d’études ont été faites sur le TDD. Il en ressort que les dévelop
 ## Création d'un projet de test
 
 ```bash
-dotnet new mstest -n Todo.UnitTests
-dotnet add ./Todo.UnitTests/Todo.UnitTests.csproj reference ./Todo/Todo.csproj
+dotnet new mstest -n BoutiqueWeb.UnitTests
+cd BoutiqueWeb.UnitTests
+dotnet add BoutiqueWeb.UnitTests.csproj reference ../BoutiqueWeb/BoutiqueWeb.csproj
 dotnet add package FluentAssertions --version 6.12.0
 dotnet add package Moq
-dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 8.0.0
 ```
 
 Pour voir les tests dans VSCode : C# Dev Kit
@@ -167,7 +168,7 @@ dotnet build
 
 - [Cours OpenClassrooms - Testez votre application C#](https://openclassrooms.com/fr/courses/5641591-testez-votre-application-c/5656581-decouvrez-les-principes-du-test-driven-development-tdd)
 - [C# - how to inject, mock or stub DateTime for unit tests](https://peterdaugaardrasmussen.com/2020/05/16/c-how-to-mock-or-stub-the-datetime-struct-for-tests/)
-- [Fluent Assertion](https://fluentassertions.com/)
+- [Fluent Assertions](https://fluentassertions.com/)
 
 ## Autres
 

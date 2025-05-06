@@ -2,7 +2,9 @@ using System.Diagnostics;
 
 namespace design_patterns;
 
-// The Abstract Factory design pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+// The Abstract Factory design pattern provides an interface for
+//creating families of related or dependent objects without
+//specifying their concrete classes.
 
 
 
